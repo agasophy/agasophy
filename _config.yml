@@ -1,0 +1,55 @@
+title: Agasophy
+description: A dictionary and collection of texts on philosophical concepts
+url: https://agasophy.com
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-paginate-v2
+
+# Collections
+collections:
+  dictionary:
+    output: true
+    permalink: /:path
+  texts:
+    output: true
+
+# Defaults
+defaults:
+  - scope:
+      path: "_dictionary"
+      type: "dictionary"
+    values:
+      layout: "word"
+  - scope:
+      path: "_texts"
+      type: "texts"
+    values:
+      layout: "text"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Pagination
+pagination:
+  enabled: true
+  per_page: 20
+  permalink: '/page/:num/'
+  title: ':title - Page :num'
+  sort_field: 'title'
+  sort_reverse: false
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - docker-compose.yml
+  - .idea

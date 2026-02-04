@@ -1,0 +1,24 @@
+---
+layout: default
+---
+{% include breadcrumb.html %}
+
+<article class="text-article">
+  <header class="article-header">
+    <h1>{% if page.chapter_title %}{{ page.chapter_title }}{% else %}{{ page.title }}{% endif %}</h1>
+    {% if page.date %}
+    <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+    {% endif %}
+    {% if page.description %}
+    <p class="description">{{ page.description }}</p>
+    {% endif %}
+  </header>
+
+  <div class="article-content">
+    {{ content }}
+  </div>
+
+  {% include chapter-pagination.html %}
+</article>
+
+{% include chapter-nav.html %}

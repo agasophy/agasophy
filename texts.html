@@ -1,0 +1,35 @@
+---
+layout: default
+title: Texts
+permalink: /texts/
+pagination:
+  enabled: true
+  collection: texts
+  per_page: 20
+  sort_field: date
+  sort_reverse: true
+---
+{% include breadcrumb.html %}
+
+<h1>Texts</h1>
+
+<ul class="text-list">
+{% if paginator.posts %}
+  {% for text in paginator.posts %}
+  <li>
+    <a href="{{ text.url | relative_url }}">{{ text.title }}</a>
+    {% if text.description %}<p>{{ text.description }}</p>{% endif %}
+  </li>
+  {% endfor %}
+{% else %}
+  {% assign texts = site.texts | sort: "date" | reverse %}
+  {% for text in texts %}
+  <li>
+    <a href="{{ text.url | relative_url }}">{{ text.title }}</a>
+    {% if text.description %}<p>{{ text.description }}</p>{% endif %}
+  </li>
+  {% endfor %}
+{% endif %}
+</ul>
+
+{% include pagination.html %}

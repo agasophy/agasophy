@@ -1,0 +1,15 @@
+services:
+  jekyll:
+    image: jekyll/jekyll:4
+    container_name: agasophy
+    volumes:
+      - .:/srv/jekyll
+      - jekyll_bundle:/usr/local/bundle
+    ports:
+      - "4000:4000"
+    command: bash -c "bundle install && jekyll serve --watch --force_polling --livereload"
+    environment:
+      - JEKYLL_ENV=development
+
+volumes:
+  jekyll_bundle:

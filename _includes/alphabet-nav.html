@@ -1,0 +1,17 @@
+<nav class="alphabet-nav" aria-label="Dictionary navigation">
+  {% assign letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z" | split: "," %}
+  {% if page.letter %}
+    {% assign current_letter = page.letter %}
+  {% else %}
+    {% assign url_parts = page.url | split: '/' %}
+    {% assign current_letter = url_parts[1] %}
+  {% endif %}
+  {% unless current_letter %}
+    {% assign current_letter = "a" %}
+  {% endunless %}
+  <ul>
+    {% for letter in letters %}
+    <li><a href="/{{ letter }}/"{% if letter == current_letter %} class="active"{% endif %}>{{ letter | upcase }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

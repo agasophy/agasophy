@@ -1,0 +1,36 @@
+---
+layout: default
+---
+{% include breadcrumb.html %}
+
+<h1>{{ page.letter | upcase }}</h1>
+
+<div class="word-list-full">
+{% if paginator.posts %}
+  {% for word in paginator.posts %}
+  <article class="word-entry">
+    <h2><a href="{{ word.url | relative_url }}">{{ word.word }}</a></h2>
+    <span class="pronunciation">{{ word.pronunciation }}</span>
+    <span class="part-of-speech">{{ word.part_of_speech }}</span>
+    <div class="definition">{{ word.content }}</div>
+  </article>
+  {% endfor %}
+  {% include pagination.html %}
+{% else %}
+  {% assign letter_path = '_dictionary/' | append: page.letter | append: '/' %}
+  {% assign words = site.dictionary | where_exp: "item", "item.path contains letter_path" | where_exp: "item", "item.word" | sort: "word" %}
+  {% for word in words %}
+  <article class="word-entry">
+    <h2><a href="{{ word.url | relative_url }}">{{ word.word }}</a></h2>
+    <span class="pronunciation">{{ word.pronunciation }}</span>
+    <span class="part-of-speech">{{ word.part_of_speech }}</span>
+    <div class="definition">{{ word.content }}</div>
+  </article>
+  {% endfor %}
+  {% if words.size == 0 %}
+  <p><em>No entries yet.</em></p>
+  {% endif %}
+{% endif %}
+</div>
+
+{% include alphabet-nav.html %}

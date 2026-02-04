@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{% include breadcrumb.html %}
+
+<article class="dictionary-entry">
+  <header class="word-header">
+    <h1 class="word">{{ page.word }}</h1>
+    <span class="pronunciation">{{ page.pronunciation }}</span>
+    <span class="part-of-speech">{{ page.part_of_speech }}</span>
+  </header>
+
+  <div class="definition">
+    {{ content }}
+  </div>
+
+  {% include alphabet-nav.html %}
+</article>

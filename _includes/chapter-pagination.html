@@ -1,0 +1,40 @@
+{% assign current_path = page.url | split: '/' | slice: 1 %}
+{% assign text_slug = current_path[0] %}
+
+{% assign chapters = site.texts | where_exp: "item", "item.url contains text_slug" | sort: "chapter" %}
+
+{% if chapters.size > 1 %}
+  {% assign current_index = nil %}
+  {% for chapter in chapters %}
+    {% if chapter.url == page.url %}
+      {% assign current_index = forloop.index0 %}
+    {% endif %}
+  {% endfor %}
+
+  {% if current_index != nil %}
+    {% assign prev_index = current_index | minus: 1 %}
+    {% assign next_index = current_index | plus: 1 %}
+
+    <nav class="chapter-footer-nav" aria-label="Chapter navigation">
+      {% if prev_index >= 0 %}
+        {% assign prev_chapter = chapters[prev_index] %}
+        <a href="{{ prev_chapter.url | relative_url }}" class="chapter-prev">
+          <span class="nav-label">&larr; Previous</span>
+          <span class="nav-title">{{ prev_chapter.chapter_title }}</span>
+        </a>
+      {% else %}
+        <span class="chapter-prev disabled"></span>
+      {% endif %}
+
+      {% if next_index < chapters.size %}
+        {% assign next_chapter = chapters[next_index] %}
+        <a href="{{ next_chapter.url | relative_url }}" class="chapter-next">
+          <span class="nav-label">Next &rarr;</span>
+          <span class="nav-title">{{ next_chapter.chapter_title }}</span>
+        </a>
+      {% else %}
+        <span class="chapter-next disabled"></span>
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endif %}

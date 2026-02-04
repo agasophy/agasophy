@@ -1,0 +1,28 @@
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+    {% if page.layout == 'letter' %}
+    <li><a href="{{ '/a' | relative_url }}">Dictionary</a></li>
+    <li aria-current="page">{{ page.letter | upcase }}</li>
+    {% elsif page.layout == 'word' %}
+    <li><a href="{{ '/a' | relative_url }}">Dictionary</a></li>
+    {% assign url_parts = page.url | split: '/' %}
+    {% assign letter = url_parts[1] %}
+    <li><a href="/{{ letter }}/">{{ letter | upcase }}</a></li>
+    <li aria-current="page">{{ page.word }}</li>
+    {% elsif page.layout == 'text' %}
+    <li><a href="{{ '/texts' | relative_url }}">Texts</a></li>
+    {% if page.chapter_title %}
+    {% assign current_path = page.url | split: '/' | slice: 1 %}
+    {% assign text_slug = current_path[0] %}
+    {% assign first_chapter = site.texts | where_exp: "item", "item.url contains text_slug" | sort: "chapter" | first %}
+    <li><a href="{{ first_chapter.url | relative_url }}">{{ page.title }}</a></li>
+    <li aria-current="page">{{ page.chapter_title }}</li>
+    {% else %}
+    <li aria-current="page">{{ page.title }}</li>
+    {% endif %}
+    {% elsif page.title == 'Texts' %}
+    <li aria-current="page">Texts</li>
+    {% endif %}
+  </ol>
+</nav>

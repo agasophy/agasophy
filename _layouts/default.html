@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/a' | relative_url }}">Dictionary</a>
+      <a href="{{ '/texts' | relative_url }}">Texts</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}</p>
+  </footer>
+
+  <script>
+    // Center alphabet nav on active letter
+    document.addEventListener('DOMContentLoaded', function() {
+      const nav = document.querySelector('.alphabet-nav');
+      const active = document.querySelector('.alphabet-nav a.active');
+      if (nav && active) {
+        const navHeight = nav.offsetHeight;
+        const activeTop = active.offsetTop;
+        const activeHeight = active.offsetHeight;
+        nav.scrollTop = activeTop - (navHeight / 2) + (activeHeight / 2);
+      }
+    });
+  </script>
+</body>
+</html>

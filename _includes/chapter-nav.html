@@ -1,0 +1,19 @@
+{% assign current_path = page.url | split: '/' | slice: 1 %}
+{% assign text_slug = current_path[0] %}
+
+{% assign chapters = site.texts | where_exp: "item", "item.url contains text_slug" | sort: "chapter" %}
+
+{% if chapters.size > 1 %}
+<nav class="chapter-nav" aria-label="Chapters">
+  <ul>
+    {% for chapter in chapters %}
+    <li>
+      <a href="{{ chapter.url | relative_url }}"{% if chapter.url == page.url %} class="active" aria-current="page"{% endif %}>
+        <span class="chapter-number">{{ chapter.chapter }}</span>
+        <span class="chapter-title">{{ chapter.chapter_title }}</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}
