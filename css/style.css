@@ -26,7 +26,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #0066cc;
+    color: #333;
 }
 
 main {
@@ -43,6 +43,17 @@ footer {
     border-top: 1px solid #eee;
     text-align: center;
     color: #666;
+}
+
+footer a,
+footer a:link,
+footer a:visited {
+    color: #666;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #333;
 }
 
 /* Homepage */
@@ -76,7 +87,7 @@ footer {
 .section-card a {
     display: inline-block;
     margin-top: 15px;
-    color: #0066cc;
+    color: #333;
     text-decoration: none;
 }
 
@@ -108,9 +119,48 @@ footer {
     color: #888;
 }
 
+.word-header .word-meta {
+    margin-bottom: 12px;
+}
+
+.word-header .etymology {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.word-header .audio-btn {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-right: 10px;
+    color: #666;
+    transition: all 0.15s ease;
+}
+
+.word-header .audio-btn:hover {
+    background: #f0f0f0;
+    border-color: #ccc;
+    color: #333;
+}
+
+.word-header .audio-btn:active {
+    background: #e0e0e0;
+}
+
 .definition {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     line-height: 1.8;
+    color: #222;
 }
 
 .definition p {
@@ -118,6 +168,45 @@ footer {
 }
 
 .definition strong {
+    color: #555;
+}
+
+.definition a,
+.definition a:link,
+.definition a:visited {
+    color: #555;
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.definition a:hover {
+    color: #333;
+    border-bottom-color: #999;
+}
+
+/* See also links */
+.see-also {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 0.85rem;
+    color: #888;
+    text-align: left;
+}
+
+.see-also-label {
+    color: #999;
+}
+
+.see-also a,
+.see-also a:link,
+.see-also a:visited {
+    color: #888;
+    text-decoration: none;
+}
+
+.see-also a:hover {
     color: #555;
 }
 
@@ -205,7 +294,7 @@ footer {
 }
 
 .word-list a:hover {
-    color: #0066cc;
+    color: #333;
 }
 
 /* Text List */
@@ -227,7 +316,7 @@ footer {
 }
 
 .text-list a:hover {
-    color: #0066cc;
+    color: #333;
 }
 
 .text-list p {
@@ -305,14 +394,16 @@ footer {
     color: #999;
 }
 
-.breadcrumb a {
+.breadcrumb a,
+.breadcrumb a:link,
+.breadcrumb a:visited {
     color: #666;
     text-decoration: none;
     margin-right: 0;
 }
 
 .breadcrumb a:hover {
-    color: #0066cc;
+    color: #333;
 }
 
 .breadcrumb [aria-current="page"] {
@@ -341,7 +432,7 @@ footer {
 }
 
 .word-entry h2 a:hover {
-    color: #0066cc;
+    color: #333;
 }
 
 .word-entry .pronunciation {
@@ -356,19 +447,58 @@ footer {
     font-size: 0.95rem;
 }
 
+.word-entry .audio-btn {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-right: 8px;
+    color: #666;
+    transition: all 0.15s ease;
+}
+
+.word-entry .audio-btn:hover {
+    background: #f0f0f0;
+    border-color: #ccc;
+    color: #333;
+}
+
+.word-entry .audio-btn:active {
+    background: #e0e0e0;
+}
+
+.word-entry .etymology {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin: 8px 0;
+}
+
 .word-entry .definition {
     margin-top: 10px;
     color: #555;
     line-height: 1.6;
 }
 
-.word-entry .definition a {
-    color: #0066cc;
+.word-entry .definition a,
+.word-entry .definition a:link,
+.word-entry .definition a:visited {
+    color: #555;
+    font-weight: 500;
     text-decoration: none;
+    border-bottom: 1px solid #ccc;
 }
 
 .word-entry .definition a:hover {
-    text-decoration: underline;
+    color: #333;
+    border-bottom-color: #999;
 }
 
 /* Pagination */
@@ -385,7 +515,7 @@ footer {
 
 .pagination-prev,
 .pagination-next {
-    color: #0066cc;
+    color: #333;
     text-decoration: none;
     padding: 8px 16px;
     border: 1px solid #ddd;

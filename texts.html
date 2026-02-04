@@ -16,18 +16,22 @@ pagination:
 <ul class="text-list">
 {% if paginator.posts %}
   {% for text in paginator.posts %}
+  {% unless text.chapter and text.chapter > 1 %}
   <li>
     <a href="{{ text.url | relative_url }}">{{ text.title }}</a>
     {% if text.description %}<p>{{ text.description }}</p>{% endif %}
   </li>
+  {% endunless %}
   {% endfor %}
 {% else %}
   {% assign texts = site.texts | sort: "date" | reverse %}
   {% for text in texts %}
+  {% unless text.chapter and text.chapter > 1 %}
   <li>
     <a href="{{ text.url | relative_url }}">{{ text.title }}</a>
     {% if text.description %}<p>{{ text.description }}</p>{% endif %}
   </li>
+  {% endunless %}
   {% endfor %}
 {% endif %}
 </ul>

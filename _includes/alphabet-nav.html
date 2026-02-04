@@ -11,7 +11,11 @@
   {% endunless %}
   <ul>
     {% for letter in letters %}
+      {% assign letter_path = '_dictionary/' | append: letter | append: '/' %}
+      {% assign words_for_letter = site.dictionary | where_exp: "item", "item.path contains letter_path" | where_exp: "item", "item.word" %}
+      {% if words_for_letter.size > 0 %}
     <li><a href="/{{ letter }}/"{% if letter == current_letter %} class="active"{% endif %}>{{ letter | upcase }}</a></li>
+      {% endif %}
     {% endfor %}
   </ul>
 </nav>

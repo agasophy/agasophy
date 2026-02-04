@@ -1,0 +1,4 @@
+epitran
+gtts
+pyyaml
+requests

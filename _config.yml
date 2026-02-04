@@ -1,7 +1,9 @@
 title: Agasophy
-description: A dictionary and collection of texts on philosophical concepts
+description: Un dictionnaire et une collection de textes sur des concepts philosophiques
 url: https://agasophy.com
 baseurl: ""
+repository: https://github.com/agasophy/agasophy
+lang: fr
 
 # Build settings
 markdown: kramdown

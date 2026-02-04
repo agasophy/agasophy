@@ -6,13 +6,35 @@ layout: default
 <article class="dictionary-entry">
   <header class="word-header">
     <h1 class="word">{{ page.word }}</h1>
-    <span class="pronunciation">{{ page.pronunciation }}</span>
-    <span class="part-of-speech">{{ page.part_of_speech }}</span>
+    <div class="word-meta">
+      <span class="pronunciation">{{ page.pronunciation }}</span>
+      {% if page.audio %}
+      <button class="audio-btn" onclick="document.getElementById('pronunciation-audio').play()" aria-label="Listen to pronunciation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+      </button>
+      <audio id="pronunciation-audio" src="{{ page.audio }}" preload="none"></audio>
+      {% endif %}
+      <span class="part-of-speech">{{ page.part_of_speech }}</span>
+    </div>
+    {% if page.etymology_alt %}
+    <p class="etymology">{{ page.etymology_alt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    {% elsif page.etymology %}
+    <p class="etymology">{{ page.etymology | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    {% endif %}
   </header>
 
   <div class="definition">
     {{ content }}
   </div>
+
+  {% if page.see_also %}
+  <footer class="see-also">
+    <span class="see-also-label">Voir aussi :</span>
+    {% for link in page.see_also %}
+      <a href="{{ link.url }}">{{ link.text }}</a>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </footer>
+  {% endif %}
 
   {% include alphabet-nav.html %}
 </article>

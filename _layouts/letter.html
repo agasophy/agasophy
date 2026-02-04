@@ -11,8 +11,27 @@ layout: default
   <article class="word-entry">
     <h2><a href="{{ word.url | relative_url }}">{{ word.word }}</a></h2>
     <span class="pronunciation">{{ word.pronunciation }}</span>
+    {% if word.audio %}
+    <button class="audio-btn" onclick="document.getElementById('audio-{{ word.word | slugify }}').play()" aria-label="Listen to pronunciation">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+    </button>
+    <audio id="audio-{{ word.word | slugify }}" src="{{ word.audio }}" preload="none"></audio>
+    {% endif %}
     <span class="part-of-speech">{{ word.part_of_speech }}</span>
+    {% if word.etymology_alt %}
+    <p class="etymology">{{ word.etymology_alt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    {% elsif word.etymology %}
+    <p class="etymology">{{ word.etymology | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    {% endif %}
     <div class="definition">{{ word.content }}</div>
+    {% if word.see_also %}
+    <div class="see-also">
+      <span class="see-also-label">Voir aussi :</span>
+      {% for link in word.see_also %}
+        <a href="{{ link.url }}">{{ link.text }}</a>{% unless forloop.last %}, {% endunless %}
+      {% endfor %}
+    </div>
+    {% endif %}
   </article>
   {% endfor %}
   {% include pagination.html %}
@@ -23,8 +42,27 @@ layout: default
   <article class="word-entry">
     <h2><a href="{{ word.url | relative_url }}">{{ word.word }}</a></h2>
     <span class="pronunciation">{{ word.pronunciation }}</span>
+    {% if word.audio %}
+    <button class="audio-btn" onclick="document.getElementById('audio-{{ word.word | slugify }}').play()" aria-label="Listen to pronunciation">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+    </button>
+    <audio id="audio-{{ word.word | slugify }}" src="{{ word.audio }}" preload="none"></audio>
+    {% endif %}
     <span class="part-of-speech">{{ word.part_of_speech }}</span>
+    {% if word.etymology_alt %}
+    <p class="etymology">{{ word.etymology_alt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    {% elsif word.etymology %}
+    <p class="etymology">{{ word.etymology | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+    {% endif %}
     <div class="definition">{{ word.content }}</div>
+    {% if word.see_also %}
+    <div class="see-also">
+      <span class="see-also-label">Voir aussi :</span>
+      {% for link in word.see_also %}
+        <a href="{{ link.url }}">{{ link.text }}</a>{% unless forloop.last %}, {% endunless %}
+      {% endfor %}
+    </div>
+    {% endif %}
   </article>
   {% endfor %}
   {% if words.size == 0 %}
